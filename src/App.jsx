@@ -17,7 +17,7 @@ function App() {
     setTodoList(updatedTodos);
   }
 
-  function onUpdateTodo(editedTodo) {
+  function updateTodo(editedTodo) {
     const updatedTodos = todoList.map((todo) =>
       todo.id === editedTodo.id ? { ...editedTodo } : todo
     );
@@ -30,7 +30,7 @@ function App() {
       <TodoList
         todoList={todoList}
         onCompleteTodo={completeTodo}
-        onUpdateTodo={onUpdateTodo}
+        onUpdateTodo={updateTodo}
       />
     </div>
   );

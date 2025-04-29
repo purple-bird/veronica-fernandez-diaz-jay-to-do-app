@@ -8,7 +8,7 @@ function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
 
   function handleCancel() {
     setWorkingTitle(todo.title);
-    setIsEditing(!isEditing);
+    setIsEditing(false);
   }
 
   function handleEdit(event) {
