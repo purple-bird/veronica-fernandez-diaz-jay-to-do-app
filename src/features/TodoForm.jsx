@@ -3,7 +3,6 @@ import TextInputWithLabel from '../shared/TextInputWithLabel';
 
 function TodoForm({ onAddTodo, isSaving }) {
   const [workingTodoTitle, setWorkingTodoTitle] = useState('');
-
   const todoTitleInput = useRef('');
 
   function handleAddTodo(event) {
