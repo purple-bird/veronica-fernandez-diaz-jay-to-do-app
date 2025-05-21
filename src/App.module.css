@@ -1,0 +1,35 @@
+.form {
+  background-color: #bfcde0;
+  margin: 0 auto;
+  width: fit-content;
+  padding: 2rem 4rem 10rem 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.form p {
+  font-weight: bolder;
+}
+
+.form hr {
+  margin: 1rem 0rem;
+}
+
+.error {
+  border-color: var(--secondary-color);
+  border-style: solid;
+}
+
+.error p {
+  padding: 0.5rem;
+  color: var(--text-secondary-color);
+  background-color: var(--secondary-color);
+}
+
+.error button {
+  color: var(--text-secondary-color);
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  font-weight: bold;
+}

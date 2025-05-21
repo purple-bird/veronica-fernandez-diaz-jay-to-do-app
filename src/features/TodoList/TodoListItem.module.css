@@ -1,0 +1,15 @@
+.item {
+  padding-bottom: 0.5rem;
+}
+
+.item input {
+  margin-right: 0.5rem;
+}
+
+.item button {
+  color: var(--text-secondary-color);
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  font-weight: bold;
+  margin-right: 0.5rem;
+}
