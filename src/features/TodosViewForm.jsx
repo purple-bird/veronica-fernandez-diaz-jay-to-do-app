@@ -1,4 +1,26 @@
 import { useState, useEffect } from 'react';
+import styled from 'styled-components';
+
+const StyledButton = styled.button`
+  background: var(--primary-color);
+  color: var(--text-secondary-color);
+  border-color: var(--primary-color);
+  margin-left: 0.2rem;
+`;
+const StyledSelect = styled.select`
+  background: lightgray;
+  padding: 0.5rem;
+  margin: 1rem 0.5rem;
+  font-family: var(--primary-font);
+`;
+
+const StyledLabel = styled.label`
+  font-family: var(--primary-font);
+`;
+
+const StyledInput = styled.input`
+  font-family: var(--primary-font);
+`;
 
 function TodoViewForm({
   sortDirection,
@@ -23,19 +45,19 @@ function TodoViewForm({
   return (
     <form onSubmit={preventRefresh}>
       <div>
-        <label>Search todos:</label>
-        <input
+        <StyledLabel>Search todos:</StyledLabel>
+        <StyledInput
           type="text"
           onChange={(e) => setLocalQueryString(e.target.value)}
           value={localQueryString}
-        ></input>
-        <button type="button" onClick={() => setLocalQueryString('')}>
+        ></StyledInput>
+        <StyledButton type="button" onClick={() => setLocalQueryString('')}>
           Clear
-        </button>
+        </StyledButton>
       </div>
       <div>
-        <label htmlFor="sort-by-select">Sort by</label>
-        <select
+        <StyledLabel htmlFor="sort-by-select">Sort by</StyledLabel>
+        <StyledSelect
           id="sort-by-select"
           onChange={(e) => setSortField(e.target.value)}
           value={sortField}
@@ -43,16 +65,16 @@ function TodoViewForm({
         >
           <option value="title">Title</option>
           <option value="createdTime">Time added</option>
-        </select>
-        <label htmlFor="direction-select">Direction</label>
-        <select
+        </StyledSelect>
+        <StyledLabel htmlFor="direction-select">Direction</StyledLabel>
+        <StyledSelect
           id="direction-select"
           onChange={(e) => setSortDirection(e.target.value)}
           value={sortDirection}
         >
           <option value="desc">Descending</option>
           <option value="asc">Ascending</option>
-        </select>
+        </StyledSelect>
       </div>
     </form>
   );
