@@ -1,3 +1,10 @@
+const initialState = {
+  todoList: [],
+  isLoading: false,
+  isSaving: false,
+  errorMessage: '',
+};
+
 const actions = {
   fetchTodos: 'fetchTodos',
   loadTodos: 'loadTodos',
@@ -80,14 +87,16 @@ function reducer(state = initialState, action) {
 
       const updatedState = {
         ...state,
-        todoList: updatedTodos,
+        todoList: [...updatedTodos],
       };
 
       if (action.error) {
         updatedState.errorMessage = action.error.message;
       }
 
-      return updatedState;
+      return {
+        ...updatedState,
+      };
     }
 
     case actions.completeTodo: {
@@ -98,24 +107,29 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         todoList: updatedTodos,
+        isCompleted: true,
       };
     }
 
     case actions.revertTodo: {
       const revertedTodos = state.todoList.map((todo) =>
-        todo.id === action.originalTodo.id ? { ...action.originalTodo, isCompleted: false } : todo
+        todo.id === action.originalTodo.id
+          ? { ...action.originalTodo, isCompleted: false }
+          : todo
       );
 
       const revertedState = {
         ...state,
-        todoList: revertedTodos,
+        todoList: [...revertedTodos],
       };
 
       if (action.error) {
         revertedState.errorMessage = action.error.message;
       }
 
-      return revertedState;
+      return {
+        ...revertedState,
+      };
     }
 
     case actions.clearError:
@@ -124,15 +138,9 @@ function reducer(state = initialState, action) {
         errorMessage: '',
       };
 
-    default: return state;
+    default:
+      return state;
   }
 }
-
-const initialState = {
-  todoList: [],
-  isLoading: false,
-  isSaving: false,
-  errorMessage: '',
-};
 
 export { reducer, initialState, actions };

@@ -97,6 +97,11 @@ function App() {
   const completeTodo = async (id) => {
     const originalTodo = todoState.todoList.find((todo) => todo.id === id);
 
+    dispatch({
+      type: todoActions.completeTodo,
+      completedTodo: { ...originalTodo, isCompleted: true },
+    });
+
     const payload = {
       records: [
         {
@@ -135,8 +140,6 @@ function App() {
       if (!records[0].fields.isCompleted) {
         completedTodo.isCompleted = false;
       }
-
-      dispatch({ type: todoActions.completeTodo, completedTodo });
     } catch (error) {
       dispatch({ type: todoActions.revertTodo, originalTodo, error });
     } finally {
@@ -145,7 +148,11 @@ function App() {
   };
 
   const updateTodo = async (editedTodo) => {
-    const originalTodo = todoState.todoList.find((todo) => todo.id === editedTodo.id);
+    const originalTodo = todoState.todoList.find(
+      (todo) => todo.id === editedTodo.id
+    );
+
+    dispatch({ type: todoActions.updateTodo, editedTodo });
 
     const payload = {
       records: [
@@ -174,8 +181,6 @@ function App() {
       if (!resp.ok) {
         throw new Error('Error updating');
       }
-
-      dispatch({ type: todoActions.updateTodo, editedTodo });
     } catch (error) {
       dispatch({ type: todoActions.revertTodo, originalTodo, error });
     } finally {
@@ -206,7 +211,9 @@ function App() {
         <div className={styles.error}>
           <hr />
           <p>Error: {todoState.errorMessage}</p>
-          <button onClick={() => dispatch({ type: todoActions.clearError})}>Dismiss</button>
+          <button onClick={() => dispatch({ type: todoActions.clearError })}>
+            Dismiss
+          </button>
         </div>
       )}
     </div>
