@@ -86,7 +86,8 @@ h6 {
 h1,
 h2,
 p,
-button {
+button,
+span {
   font-family: var(--primary-font);
 }
 

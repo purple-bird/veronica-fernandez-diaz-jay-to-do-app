@@ -1,8 +1,10 @@
 import './App.css';
-import TodoList from './features/TodoList/TodoList.jsx';
-import TodoForm from './features/TodoForm.jsx';
-import TodosViewForm from './features/TodosViewForm.jsx';
+import TodosPage from './pages/TodosPage.jsx';
+import About from './pages/About.jsx';
+import NotFound from './pages/NotFound.jsx';
+import Header from './shared/Header.jsx';
 import { useState, useEffect, useCallback, useReducer } from 'react';
+import { Routes, Route } from 'react-router';
 import styles from './App.module.css';
 import {
   reducer as todosReducer,
@@ -189,24 +191,28 @@ function App() {
   };
   return (
     <div className={styles.form}>
-      <h1>Todo List</h1>
-      <TodoForm onAddTodo={handleAddTodo} isSaving={todoState.isSaving} />
-      <TodoList
-        todoList={todoState.todoList}
-        onCompleteTodo={completeTodo}
-        onUpdateTodo={updateTodo}
-        isLoading={todoState.isLoading}
-        isSaving={todoState.isSaving}
-      />
-      <hr />
-      <TodosViewForm
-        sortDirection={sortDirection}
-        setSortDirection={setSortDirection}
-        sortField={sortField}
-        setSortField={setSortField}
-        queryString={queryString}
-        setQueryString={setQueryString}
-      />
+      <Header />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <TodosPage
+              handleAddTodo={handleAddTodo}
+              todoState={todoState}
+              completeTodo={completeTodo}
+              updateTodo={updateTodo}
+              sortDirection={sortDirection}
+              setSortDirection={setSortDirection}
+              sortField={sortField}
+              setSortField={setSortField}
+              queryString={queryString}
+              setQueryString={setQueryString}
+            />
+          }
+        />
+        <Route path="/about" element={<About />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
       {todoState.errorMessage && (
         <div className={styles.error}>
           <hr />
